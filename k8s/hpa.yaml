@@ -1,0 +1,23 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: backend-hpa
+  namespace: microservice-demo
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: backend
+  # Keep at least 2 pods, burst up to 5 during CPU pressure.
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          # Target average CPU utilization across pods.
+          type: Utilization
+          averageUtilization: 60
+  # Add more metrics (requests per second, custom) for richer autoscaling.
+

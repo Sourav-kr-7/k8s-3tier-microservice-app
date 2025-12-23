@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: microservice-demo
+spec:
+  # Two replicas so the static site stays available during updates.
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          # Replace with your own registry path before deploying.
+          image: ghcr.io/your-org/k8s-microservice-frontend:latest
+          ports:
+            - containerPort: 80
+          # No env needed; nginx config proxies /api to backend-service.
+

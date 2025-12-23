@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- Minimal static frontend that calls the Flask API via /api proxy. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Production Kubernetes Microservice Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Production Kubernetes Microservice Application</h1>
+            <p class="subtitle">Frontend + Flask API + PostgreSQL on Kubernetes</p>
+        </header>
+
+        <main>
+            <section class="card">
+                <h2>Users API</h2>
+                <p>Click below to fetch live data from the backend service.</p>
+                <!-- Button triggers a fetch to the backend via /api proxy in nginx.conf -->
+                <button id="fetchBtn">Fetch Users</button>
+                <pre id="result" class="result">// Waiting for data...</pre>
+            </section>
+        </main>
+
+        <footer>
+            <p>Served by Nginx · Backend proxied at <code>/api</code></p>
+        </footer>
+    </div>
+
+    <script>
+        // Minimal script to call the backend and display JSON.
+        const btn = document.getElementById('fetchBtn');
+        const result = document.getElementById('result');
+
+        btn.addEventListener('click', async () => {
+            result.textContent = 'Loading...';
+            try {
+                // The nginx config proxies /api/* to the backend service.
+                const response = await fetch('/api/users');
+                if (!response.ok) throw new Error('Request failed');
+                const data = await response.json();
+                result.textContent = JSON.stringify(data, null, 2);
+            } catch (err) {
+                result.textContent = 'Error: ' + err.message;
+            }
+        });
+    </script>
+</body>
+</html>
+

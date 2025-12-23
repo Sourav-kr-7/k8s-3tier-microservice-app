@@ -1,0 +1,44 @@
+name: Docker CI
+
+on:
+  # CI-only: validate images build on every push to main.
+  push:
+    branches: ["main"]
+
+jobs:
+  build-frontend:
+    # Separate job keeps frontend cache independent.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build frontend image
+        # Build only; no push/deploy in CI.
+        uses: docker/build-push-action@v5
+        with:
+          context: ./app/frontend
+          push: false
+          tags: frontend-ci:latest
+
+  build-backend:
+    # Independent job for API image.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build backend image
+        # Build only; no push/deploy in CI.
+        uses: docker/build-push-action@v5
+        with:
+          context: ./app/backend
+          push: false
+          tags: backend-ci:latest
+

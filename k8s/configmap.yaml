@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: microservice-demo
+data:
+  # Non-sensitive settings live in ConfigMap.
+  DB_HOST: postgres-service
+  DB_NAME: usersdb
+  DB_PORT: "5432"
+  APP_ENV: production
+  # Add feature flags or logging levels here without rebuilding images.
+

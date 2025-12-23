@@ -1,0 +1,72 @@
+:root {
+    /* Theme colors for quick tweaks. */
+    --bg: #0b1021;
+    --card: #11182f;
+    --accent: #4f8df5;
+    --text: #e9edf5;
+    --muted: #9fb1d1;
+}
+
+* { box-sizing: border-box; }
+body {
+    /* Simple gradient backdrop for a “production” look without assets. */
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: radial-gradient(circle at 20% 20%, #0f1c3d, #060913 50%);
+    color: var(--text);
+    min-height: 100vh;
+}
+.page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 24px 64px;
+}
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+h1 { margin: 0; font-size: 32px; letter-spacing: 0.2px; }
+.subtitle { color: var(--muted); margin-top: 12px; }
+main { display: flex; justify-content: center; }
+.card {
+    /* Card layout to center the call-to-action. */
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 24px;
+    width: 100%;
+    max-width: 560px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.card h2 { margin-top: 0; }
+button {
+    /* Subtle elevation and hover transitions. */
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform 120ms ease, box-shadow 120ms ease;
+    box-shadow: 0 10px 30px rgba(79,141,245,0.35);
+}
+button:hover { transform: translateY(-1px); box-shadow: 0 14px 38px rgba(79,141,245,0.45); }
+button:active { transform: translateY(1px); box-shadow: 0 8px 24px rgba(79,141,245,0.35); }
+.result {
+    background: #0b1328;
+    border: 1px solid rgba(255,255,255,0.05);
+    color: #d2ddf5;
+    border-radius: 10px;
+    padding: 16px;
+    margin-top: 18px;
+    min-height: 140px;
+    white-space: pre-wrap;
+}
+footer {
+    text-align: center;
+    margin-top: 42px;
+    color: var(--muted);
+    font-size: 14px;
+}
+

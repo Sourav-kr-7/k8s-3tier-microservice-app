@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: microservice-demo
+spec:
+  # Stable virtual IP for backend pods; only reachable inside cluster.
+  type: ClusterIP
+  selector:
+    app: backend
+  ports:
+    - port: 5000
+      targetPort: 5000
+      protocol: TCP
+  # If you need external API access, expose via Ingress instead of NodePort.
+
