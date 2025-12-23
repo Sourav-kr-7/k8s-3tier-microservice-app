@@ -38,20 +38,18 @@ This repository contains a **small but realistic 3-tier microservice application
 
 ## 🗂️ Project Structure (Detailed)
 
-k8s-microservice-project/
-│
+```text
+k8s-3tier-microservice-app/
 ├── app/
 │   ├── frontend/
 │   │   ├── index.html
 │   │   ├── styles.css
 │   │   ├── nginx.conf
 │   │   └── Dockerfile
-│   │
 │   └── backend/
 │       ├── app.py
 │       ├── requirements.txt
 │       └── Dockerfile
-│
 ├── k8s/
 │   ├── namespace.yaml
 │   ├── configmap.yaml
@@ -64,13 +62,12 @@ k8s-microservice-project/
 │   ├── postgres-service.yaml
 │   ├── ingress.yaml
 │   └── hpa.yaml
-│
 ├── .github/
 │   └── workflows/
 │       └── docker-ci.yml
-│
-├── docker-compose.yml   (for local testing)
+├── docker-compose.yml
 └── README.md
+
 
 
 ---
